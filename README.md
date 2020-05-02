@@ -5,7 +5,7 @@ Mathpad is a small extension for [Visual Studio Code] that turns a Markdown edit
 [![License](https://img.shields.io/github/license/sagebind/mathpad)](LICENSE)
 [![Visual Studio Marketplace Version](https://img.shields.io/visual-studio-marketplace/v/sagebind.mathpad)](https://marketplace.visualstudio.com/items?itemName=sagebind.mathpad)
 ![Visual Studio Marketplace Installs](https://img.shields.io/visual-studio-marketplace/i/sagebind.mathpad)
-[![Build](https://github.com/sagebind/mathpad/workflows/ci/badge.svg)](https://github.com/sagebind/mathpad/actions)
+[![Build](https://github.com/sagebind/mathpad/workflows/build/badge.svg)](https://github.com/sagebind/mathpad/actions)
 
 I created this because I couldn't find a good notebook calculator that I liked that
 
