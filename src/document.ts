@@ -1,5 +1,6 @@
+import { MathJsStatic } from 'mathjs';
 import { TextDocument } from 'vscode';
-import * as math from 'mathjs';
+import { defaultScope } from './math';
 
 /**
  * A math-enabled text document.
@@ -11,7 +12,7 @@ export default class MathDocument {
     // Expression compiler cache.
     private compileCache = new Map<string, math.EvalFunction>();
 
-    constructor(document: TextDocument) {
+    constructor(document: TextDocument, private math: MathJsStatic) {
         this.document = document;
     }
 
@@ -20,7 +21,7 @@ export default class MathDocument {
      */
     evaluate() {
         this.results.clear();
-        let scope: any = {};
+        let scope = defaultScope();
 
         for (let lineNumber = 0; lineNumber < this.document.lineCount; lineNumber++) {
             const line = this.document.lineAt(lineNumber);
@@ -56,9 +57,10 @@ export default class MathDocument {
 
         if (!compiled) {
             try {
-                compiled = math.compile(text);
+                compiled = this.math.compile(text);
                 this.compileCache.set(text, compiled);
             } catch (error) {
+                // console.log(error);
                 return null;
             }
         }

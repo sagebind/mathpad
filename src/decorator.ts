@@ -10,9 +10,11 @@ import {
     Uri,
     window,
     workspace,
+    ExtensionContext,
 } from "vscode";
 import MathDocument from "./document";
-import * as math from 'mathjs';
+import { MathJsStatic } from 'mathjs';
+import { create } from "./math";
 
 const decorationType = window.createTextEditorDecorationType({
     after: {
@@ -30,8 +32,11 @@ export default class EditorDecorator implements Disposable {
     ];
     private documents = new Map<Uri, MathDocument>();
     private disposables: Disposable[] = [];
+    private math: MathJsStatic;
 
-    constructor() {
+    constructor(private ctx: ExtensionContext) {
+        this.math = create(ctx);
+
         // Handle editors being created and disposed, which we might be
         // interested in.
         this.disposables.push(window.onDidChangeVisibleTextEditors(() => {
@@ -110,7 +115,7 @@ export default class EditorDecorator implements Disposable {
         let mathDocument = this.documents.get(document.uri);
 
         if (!mathDocument) {
-            mathDocument = new MathDocument(document);
+            mathDocument = new MathDocument(document, this.math);
             this.documents.set(document.uri, mathDocument);
         }
 
@@ -127,8 +132,15 @@ export default class EditorDecorator implements Disposable {
      * @param value Number to format
      */
     private format(value: any): string {
-        return math.format(value, number => {
-            let s = math.format(number, {
+        if (value instanceof Date) {
+            if (value.getHours() || value.getMinutes() || value.getSeconds() || value.getMilliseconds()) {
+                return value.toLocaleString();
+            }
+            return value.toLocaleDateString();
+        }
+
+        return this.math.format(value, number => {
+            let s = this.math.format(number, {
                 lowerExp: -9,
                 upperExp: 15,
             });
