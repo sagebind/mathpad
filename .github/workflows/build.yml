@@ -14,7 +14,7 @@ jobs:
 
       - name: Build VSIX package
         run: |
-          npm install -g vsce
+          sudo npm install -g vsce
           vsce package -o mathpad.vsix
 
       - name: Upload VSIX package

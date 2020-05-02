@@ -13,5 +13,5 @@ jobs:
 
       - name: Publish to Marketplace
         run: |
-          npm install -g vsce
+          sudo npm install -g vsce
           vsce publish -p ${{ secrets.AZURE_DEVOPS_TOKEN }}
