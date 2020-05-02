@@ -1,15 +1,29 @@
 {
     "name": "mathpad",
     "displayName": "Mathpad",
-    "description": "",
+    "description": "Interactive scratchpad calculator.",
+    "publisher": "sagebind",
     "version": "0.0.1",
     "license": "MIT",
     "engines": {
         "vscode": "^1.44.0"
     },
+    "keywords": [
+        "calc",
+        "calculator",
+        "math"
+    ],
     "categories": [
         "Other"
     ],
+    "homepage": "https://github.com/sagebind/mathpad",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/sagebind/mathpad.git"
+    },
+    "bugs": {
+        "url": "https://github.com/sagebind/mathpad/issues"
+    },
     "activationEvents": [
         "onLanguage:markdown"
     ],
@@ -19,8 +33,11 @@
         "compile": "tsc -p ./",
         "lint": "eslint src --ext ts",
         "watch": "tsc -watch -p ./",
-        "pretest": "npm run compile && npm run lint",
-        "test": "node ./out/test/runTest.js"
+        "pretest": "npm run compile && npm run lint"
+    },
+    "dependencies": {
+        "@types/mathjs": "^6.0.5",
+        "mathjs": "^6.6.4"
     },
     "devDependencies": {
         "@types/vscode": "^1.44.0",
@@ -34,9 +51,5 @@
         "mocha": "^7.1.2",
         "typescript": "^3.8.3",
         "vscode-test": "^1.3.0"
-    },
-    "dependencies": {
-        "@types/mathjs": "^6.0.5",
-        "mathjs": "^6.6.4"
     }
 }

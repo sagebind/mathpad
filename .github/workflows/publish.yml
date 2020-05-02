@@ -1,0 +1,17 @@
+name: publish
+on:
+  release:
+    types: [published]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - run: npm install
+
+      - name: Publish to Marketplace
+        run:
+          npm install -g vsce
+          vsce publish -p ${{ secrets.AZURE_DEVOPS_TOKEN }}

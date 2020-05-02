@@ -26,7 +26,8 @@ export default class MathDocument {
             const line = this.document.lineAt(lineNumber);
 
             if (!line.isEmptyOrWhitespace) {
-                const compiled = this.compile(line.text);
+                const trimmed = line.text.trim();
+                const compiled = this.compile(trimmed);
 
                 if (compiled) {
                     try {
@@ -51,13 +52,12 @@ export default class MathDocument {
      * @param text The math expression to compile.
      */
     private compile(text: string): math.EvalFunction | null {
-        const trimmed = text.trim();
-        let compiled = this.compileCache.get(trimmed);
+        let compiled = this.compileCache.get(text);
 
         if (!compiled) {
             try {
-                compiled = math.compile(trimmed);
-                this.compileCache.set(trimmed, compiled);
+                compiled = math.compile(text);
+                this.compileCache.set(text, compiled);
             } catch (error) {
                 return null;
             }

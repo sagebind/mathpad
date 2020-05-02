@@ -1,32 +1,22 @@
 # Mathpad
 
-This is the README for your extension "mathpad". After writing up a brief description, we recommend including the following sections.
+Mathpad is a small extension for [Visual Studio Code] that turns a Markdown editor into an interactive scratchpad calculator.
 
-## Features
+I created this because I couldn't find a good notebook calculator that I liked that
 
-Describe specific features of your extension including screenshots of your extension in action. Image paths are relative to this README file.
+- is free and open source,
+- supports all the platforms I care about,
+- works completely offline,
+- supports variables and functions,
+- allows you to edit anywhere (as opposed to REPL style),
+- and works in and saves as plain text.
 
-For example if there is an image subfolder under your extension project workspace:
-
-\!\[feature X\]\(images/feature-x.png\)
-
-> Tip: Many popular extensions utilize animations. This is an excellent way to show off your extension! We recommend short, focused animations that are easy to follow.
-
-## Requirements
-
-If you have any requirements or dependencies, add a section describing those and how to install and configure them.
-
-## Extension Settings
-
-Include if your extension adds any VS Code settings through the `contributes.configuration` extension point.
-
-For example:
-
-This extension contributes the following settings:
-
-* `myExtension.enable`: enable/disable this extension
-* `myExtension.thing`: set to `blah` to do something
+I already have [Visual Studio Code] installed on all my computers and use it for lots of text editing purposes, so I decided to make it also my calculator using this extension.
 
 ## License
 
 This project's source code and documentation is licensed under the MIT license. See the [LICENSE](LICENSE) file for details.
+
+
+[Math.js]: https://mathjs.org
+[Visual Studio Code]: https://code.visualstudio.com
