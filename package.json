@@ -24,6 +24,10 @@
     "bugs": {
         "url": "https://github.com/sagebind/mathpad/issues"
     },
+    "extensionKind": [
+        "ui",
+        "workspace"
+    ],
     "activationEvents": [
         "onLanguage:markdown"
     ],
