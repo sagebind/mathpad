@@ -29,9 +29,36 @@
         "workspace"
     ],
     "activationEvents": [
-        "onLanguage:markdown"
+        "onStartupFinished"
     ],
     "main": "./out/extension.js",
+    "contributes": {
+        "configuration": {
+            "title": "Mathpad",
+            "properties": {
+                "Mathpad.fileExtensions": {
+                    "type": "array",
+                    "default": [".md"],
+                    "description": "file extensions for which to run Mathpad"
+                },
+                "Mathpad.enabled": {
+                    "type": "boolean",
+                    "default": false,
+                    "description": "enable Mathpad"
+                }
+            }
+        },
+        "commands": [
+            {
+              "command": "Mathpad.enable",
+              "title": "Enable Mathpad"
+            },
+            {
+              "command": "Mathpad.disable",
+              "title": "Disable Mathpad"
+            }
+        ]
+    },
     "scripts": {
         "vscode:prepublish": "npm run compile",
         "compile": "tsc -p ./",

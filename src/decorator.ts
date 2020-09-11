@@ -15,6 +15,7 @@ import {
 import MathDocument from "./document";
 import { MathJsStatic } from 'mathjs';
 import { create } from "./math";
+import * as path from 'path';
 
 const decorationType = window.createTextEditorDecorationType({
     after: {
@@ -123,7 +124,11 @@ export default class EditorDecorator implements Disposable {
     }
 
     private isMathEnabled(document: TextDocument): boolean {
-        return languages.match(this.documentSelector, document) > 0;
+        let config = workspace.getConfiguration('Mathpad');
+        let fileExtensions = config.get('fileExtensions') as [string];
+        let currentDocumentExtension = path.extname(document.uri.toString());
+        let enabled = config.get('enabled') as boolean;
+        return fileExtensions.includes(currentDocumentExtension) && enabled;
     }
 
     /**
