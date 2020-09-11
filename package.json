@@ -39,23 +39,23 @@
                 "Mathpad.fileExtensions": {
                     "type": "array",
                     "default": [".md"],
-                    "description": "file extensions for which to run Mathpad"
+                    "description": "File extensions for which to run Mathpad"
                 },
                 "Mathpad.enabled": {
                     "type": "boolean",
                     "default": false,
-                    "description": "enable Mathpad"
+                    "description": "Enable Mathpad"
                 }
             }
         },
         "commands": [
             {
               "command": "Mathpad.enable",
-              "title": "Enable Mathpad"
+              "title": "Mathpad: Enable"
             },
             {
               "command": "Mathpad.disable",
-              "title": "Disable Mathpad"
+              "title": "Mathpad: Disable"
             }
         ]
     },
