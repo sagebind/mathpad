@@ -36,10 +36,12 @@
         "configuration": {
             "title": "Mathpad",
             "properties": {
-                "Mathpad.fileExtensions": {
+                "Mathpad.filePatterns": {
                     "type": "array",
-                    "default": [".md"],
-                    "description": "File extensions for which to run Mathpad"
+                    "default": [
+                        ".*\\.md"
+                    ],
+                    "description": "File name patterns (regular expressions) for which to run Mathpad"
                 },
                 "Mathpad.enabled": {
                     "type": "boolean",

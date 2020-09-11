@@ -125,10 +125,11 @@ export default class EditorDecorator implements Disposable {
 
     private isMathEnabled(document: TextDocument): boolean {
         let config = workspace.getConfiguration('Mathpad');
-        let fileExtensions = config.get('fileExtensions') as [string];
-        let currentDocumentExtension = path.extname(document.uri.toString());
+        let filePatterns = config.get('filePatterns') as [string];
+        let currentFileName = path.basename(document.uri.toString());
+        let fileMatches = filePatterns.map((pat) => new RegExp(pat).test(currentFileName));
         let enabled = config.get('enabled') as boolean;
-        return fileExtensions.includes(currentDocumentExtension) && enabled;
+        return fileMatches.some((val) => val) && enabled;
     }
 
     /**
