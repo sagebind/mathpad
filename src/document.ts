@@ -8,6 +8,7 @@ import { defaultScope } from './math';
 export default class MathDocument {
     document: TextDocument;
     results = new Map<number, any>();
+    scope: any
 
     // Expression compiler cache.
     private compileCache = new Map<string, math.EvalFunction>();
@@ -21,7 +22,7 @@ export default class MathDocument {
      */
     evaluate() {
         this.results.clear();
-        let scope = defaultScope();
+        this.scope = defaultScope();
 
         for (let lineNumber = 0; lineNumber < this.document.lineCount; lineNumber++) {
             const line = this.document.lineAt(lineNumber);
@@ -32,8 +33,8 @@ export default class MathDocument {
 
                 if (compiled) {
                     try {
-                        const result = compiled.evaluate(scope);
-                        scope["last"] = result;
+                        const result = compiled.evaluate(this.scope);
+                        this.scope["last"] = result;
 
                         // Only display value results.
                         if (typeof result !== "function" && typeof result !== "undefined") {

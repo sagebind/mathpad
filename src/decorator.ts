@@ -11,6 +11,7 @@ import {
     window,
     workspace,
     ExtensionContext,
+    Range
 } from "vscode";
 import MathDocument from "./document";
 import { MathJsStatic } from 'mathjs';
@@ -78,6 +79,30 @@ export default class EditorDecorator implements Disposable {
      */
     renderAll() {
         window.visibleTextEditors.forEach(editor => this.renderEditor(editor));
+    }
+
+    renderSelection() {
+        window.visibleTextEditors.forEach(editor => {
+            editor.selections.forEach(selection => {
+                editor.edit(editBuilder => {
+                    const range = new Range(selection.start, selection.end);
+                    const text = editor.document.getText(range);
+                    const scope = this.getMathDocument(editor.document).scope;
+                    let evaluated = '';
+                    try {
+                        evaluated = this.math.evaluate(text, scope);
+                        if (evaluated === undefined) {
+                            evaluated = '';
+                        }
+                        evaluated = evaluated.toString();
+                    } catch (e) {
+                        evaluated = e.toString();
+                    }
+                    editBuilder.replace(selection, evaluated);
+                });
+            });
+        });
+        this.renderAll();
     }
 
     /**

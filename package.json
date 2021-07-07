@@ -32,6 +32,14 @@
         "onLanguage:markdown"
     ],
     "main": "./out/extension.js",
+    "contributes": {
+        "commands": [
+            {
+                "command": "Mathpad.replace",
+                "title": "Mathpad: Replace"
+            }
+        ]
+    },
     "scripts": {
         "vscode:prepublish": "npm run compile",
         "compile": "tsc -p ./",
